@@ -1,0 +1,2 @@
+module ViewReceiptsHelper
+end

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recibos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>user</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @receipts.each do |receipt| %>
+      <% if receipt.user_id == current_user.id then%>
+      <tr>
+        <td><%= receipt.user.name %></td>
+        <td><%= receipt.link %></td>
+        <td><%= receipt.created_at.strftime(" %b, %Y") %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path) %>  
+  </li>
+<% end %>
